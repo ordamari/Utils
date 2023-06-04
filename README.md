@@ -1,34 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Utils
 
-## Getting Started
+Project that contain reusable:
 
-First, run the development server:
+- Hooks
+- Components
+- Functions
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Hooks
+
+- useArray
+- useToggle
+- useTranslation
+
+### useArray
+
+Very easy use hook that help you to manage arrays of items, this hook return much a actions to use on the array such as: clear, add, removeById, updateById etc.
+
+Example of use:
+
+```
+const [users, userActions] = useArray<User>();
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+All actions to use:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- clear - that clean the array.
+- add - that add item to array.
+- removeById - that remove item by id.
+- getById - that return item by id, if not found return undefined.
+- replaceById - that replace old item with new one (intended to update all the properties of item).
+- updateById - that update item by id (intended to update partial of the properties).
+- getSortedByDates - that get the key for date and boolean that represents the direction and return the array sorted by dates.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### useToggle
 
-## Learn More
+Simply hook that need allow managing boolean state
 
-To learn more about Next.js, take a look at the following resources:
+Example of use:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+const [isOpen, toggleIsOpen] = useToggle();
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The toggle callback can get any item in her arg, if its boolean type its will set the value else is will toggle the previous value.
 
-## Deploy on Vercel
+### useTranslation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Hook that help you to translate all the application text for any language are you need
+for this hook you need to manage the languages in intended folder.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+In that folder you need create json file for each language you need in the application, after that you need to import all the files to the hook, in this example i d'ont use dynamic language but in real project you need save language in global state that allow to change him
+
+The hook return a function that get string and search for text in language file, if she d'ont find one she will find in the fall back language, if steal d'ont find she return the string that she get.
+
+Example for json:
+
+```
+{
+    "hello:"Hello"
+    "general": {
+    "world": "World",
+  }
+}
+```
+
+Example use:
+
+```
+import useTranslation from "@/hooks/useTranslation";
+
+function Home() {
+  const t = useTranslation();
+  return <div className="home">
+    <span>{t("hello")}</span>
+    <span>{t("general.world")}</span>
+  </div>;
+}
+export default Home;
+```

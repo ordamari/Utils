@@ -1,6 +1,3 @@
-import ReadMoreLess from "@/components/ReadMoreLess/ReadMoreLess";
-import Table from "@/components/Table/Table";
-import users from "@/jsons/users.json";
 import { useState } from "react";
 
 type User = {
