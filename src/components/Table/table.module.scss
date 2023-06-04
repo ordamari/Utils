@@ -1,0 +1,57 @@
+.table-container {
+    width: 100%;
+
+    table {
+        width: 100%;
+        border-spacing: 0;
+        border-collapse: none;
+        display: table;
+
+        thead {
+            background-color: var(--primary-color);
+
+            th {
+                text-align: start;
+
+                .th-inner {
+                    display: flex;
+                    padding: 3px;
+                    font-size: 1rem;
+
+
+                    .sort-container {
+                        display: inline-flex;
+                        flex-direction: column;
+                        padding-inline-start: 10px;
+
+                        button {
+                            font-size: 0.5em;
+                            background-color: transparent;
+                            border: none;
+                            cursor: pointer;
+                            transition: .2s ease;
+
+                            &.selected-sort {
+                                transform-origin: center center;
+                                scale: 1.1;
+                            }
+                        }
+
+
+
+                    }
+                }
+
+
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    display: table-cell;
+                }
+            }
+        }
+    }
+}

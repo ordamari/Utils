@@ -1,0 +1,9 @@
+.read-more-less button {
+  background-color: transparent;
+  border: none;
+  font-size: inherit;
+  font-weight: inherit;
+}
+.read-more-less button .highlight {
+  color: var(--primary-color);
+}
