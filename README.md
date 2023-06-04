@@ -78,3 +78,25 @@ function Home() {
 }
 export default Home;
 ```
+
+## Components
+
+- InfinityScroll
+- Icon
+- Paginator
+- ReadMoreLess
+- Table
+
+### InfinityScroll
+
+Wrapper component that allow you easily embed infinity scroll
+
+Except from children the components must get:
+
+- isHasMore - boolean variable that announce to component when d'ont have more items to load
+- load - callback function to load more items
+
+The component can also get:
+
+- loader - that replace the default one, the loader show when we wait to callback
+- errorComponent - that replace the default one, when have a error the error component watch and the InfinityScroll component stop load the data, when the user click on the error component the component try to load data again
