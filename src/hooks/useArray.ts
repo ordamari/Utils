@@ -5,7 +5,7 @@ export type ArrayActions<T extends Item> = {
   set: React.Dispatch<React.SetStateAction<T[]>>;
   clear: () => void;
   add: (item: T) => void;
-  addMultiple: (items: T[]) => void;
+  addArray: (items: T[]) => void;
   removeById: (id: number | string) => void;
   getById: (id: number | string) => T | undefined;
   replaceById: (id: number | string, newItem: T) => void;
@@ -24,7 +24,7 @@ function useArray<T extends Item>(initialArray: T[] = []) {
     setArray((a) => [...a, item]);
   };
 
-  const addMultiple = (items: T[]) => {
+  const addArray = (items: T[]) => {
     setArray((a) => [...a, ...items]);
   };
 
@@ -72,7 +72,7 @@ function useArray<T extends Item>(initialArray: T[] = []) {
       add,
       removeById,
       getById,
-      addMultiple,
+      addArray,
       replaceById,
       updateById,
       getSortedByDates,

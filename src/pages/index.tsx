@@ -10,7 +10,7 @@ function Home() {
   return (
     <div className="home">
       <Table<User>
-        data={users}
+        data={users.slice(0, 10)}
         keys={{
           id: "ID",
           firstName: "First Name",

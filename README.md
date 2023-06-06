@@ -4,13 +4,13 @@ Project that contain reusable:
 
 - [Hooks](#hooks)
 - [Components](#components)
-- Functions
+- [Functions](#functions)
 
 ## Hooks
 
 - [useArray](#usearray)
-- useToggle
-- useTranslation
+- [useToggle](#usetoggle)
+- [useTranslation](#usetranslation)
 
 ### useArray
 
@@ -26,6 +26,7 @@ All actions to use:
 
 - clear - that clean the array.
 - add - that add item to array.
+- addArray - that add array of items to array.
 - removeById - that remove item by id.
 - getById - that return item by id, if not found return undefined.
 - replaceById - that replace old item with new one (intended to update all the properties of item).
@@ -83,11 +84,11 @@ export default Home;
 
 ## Components
 
-- InfinityScroll
-- Icon
-- Paginator
-- ReadMoreLess
-- Table
+- [InfinityScroll](#infinityscroll)
+- [Icon](#icon)
+- [Paginator](#paginator)
+- [ReadMoreLess](#readmoreless)
+- [Table](#table)
 
 ### InfinityScroll
 
@@ -132,7 +133,7 @@ function Users() {
     if (newUsers.length === 0) {
       toggleIsHasMore();
     }
-    usersActions.addMultiple(newUsers);
+    usersActions.addArray(newUsers);
     setPage((prev) => prev + 1);
   }, [page]);
 
@@ -179,16 +180,6 @@ Props:
 
 Unstyle component for long text that you need the option to toggle between show more and less, the text will cut in the last space between min and max character in the short version, if d'ont find one that will use the max character, if d'ont have more character that max the component d'ont do nothing.
 
-|        Prop        | Is require |               Type               | Default value |                      Description                      |
-| :----------------: | :--------: | :------------------------------: | :-----------: | :---------------------------------------------------: |
-|      children      |    true    |              string              |       -       |                     The long text                     |
-|        max         |    true    |              number              |       -       | Maximum character that will shown in the less version |
-|     sideEffect     |   false    | (isShowFullText: boolean)=> void |    ()=>{}     | Side effect that can add when toggle between versions |
-|     className      |   false    |              string              |      ""       |           ClassName for style the container           |
-|       style        |   false    |       React.CSSProperties        |      {}       |      Style object for inline style the container      |
-| highlightClassName |   false    |              string              |      ""       |            ClassName for the toggle button            |
-|   highlightStyle   |   false    |       React.CSSProperties        |      {}       |    Style object for inline style the toggle button    |
-
 Example use:
 
 ```typescript
@@ -207,38 +198,21 @@ Long:
 
 ![Long image](https://res.cloudinary.com/dif8yy3on/image/upload/v1686028897/xxsas29lhvjcn66hrmcn.jpg)
 
+Props:
+
+|        Prop        | Is require |               Type               | Default value |                      Description                      |
+| :----------------: | :--------: | :------------------------------: | :-----------: | :---------------------------------------------------: |
+|      children      |    true    |              string              |       -       |                     The long text                     |
+|        max         |    true    |              number              |       -       | Maximum character that will shown in the less version |
+|     sideEffect     |   false    | (isShowFullText: boolean)=> void |    ()=>{}     | Side effect that can add when toggle between versions |
+|     className      |   false    |              string              |      ""       |           ClassName for style the container           |
+|       style        |   false    |       React.CSSProperties        |      {}       |      Style object for inline style the container      |
+| highlightClassName |   false    |              string              |      ""       |            ClassName for the toggle button            |
+|   highlightStyle   |   false    |       React.CSSProperties        |      {}       |    Style object for inline style the toggle button    |
+
 ### Table
 
 Unstyle component for creating table from array of items, for each item you can decide which keys to show in the table and witch title he have, also you can add sort by any key and give to key the function hey need for for sorting, table item must contain id
-
-Props:
-
-|           Prop           | Is require |                               Type                                |       Default value       |                         Description                         |
-| :----------------------: | :--------: | :---------------------------------------------------------------: | :-----------------------: | :---------------------------------------------------------: |
-|           data           |    true    |                                T[]                                |             -             |                Array of items for the table                 |
-|           keys           |   false    |                {[K in keyof Partial<T>]: string;}                 | {[key as keyof T]:string} |   For each key you want in the table, witch title to show   |
-|          sorts           |   false    | {[K in keyof Partial<T>]: (first: T[K], second: T[K]) => number;} |            {}             | For each key you want sort by him, function for sorting him |
-|  staticPaginatorOptions  |   false    |                          Specified later                          |         undefined         |                       Specified later                       |
-| relativePaginatorOptions |   false    |                          Specified later                          |         undefined         |                       Specified later                       |
-
-export type StaticPaginatorOptions = {
-itemsPerPage: number;
-page?: number;
-handlePageChange?: (page: number) => void;
-className?: string;
-pageButtonClassName?: string;
-};
-
-staticPaginatorOptions:
-
-Add this for paginator between existing data
-
-|       Prop       | Is require |                Type                 | Default value |                                           Description                                            |
-| :--------------: | :--------: | :---------------------------------: | :-----------: | :----------------------------------------------------------------------------------------------: |
-|   itemsPerPage   |    true    |               number                |       -       |                                 How much items you want in page                                  |
-|       page       |   false    |         number or undefined         |       -       | this variable intended to control the page from outside, if you d'ont need that you can skep him |
-| handlePageChange |   false    | (page: number) => void or undefined |       -       | this variable intended to control the page from outside, if you d'ont need that you can skep him |
-|    ClassName     |   false    | (page: number) => void or undefined |       -       | this variable intended to control the page from outside, if you d'ont need that you can skep him |
 
 Example use:
 
@@ -252,3 +226,47 @@ Example use:
   }}
 />
 ```
+
+![Table image](https://res.cloudinary.com/dif8yy3on/image/upload/v1686033507/sosiz9dsmsn1firr3936.jpg)
+
+Props:
+
+|           Prop           | Is require |                               Type                                |       Default value       |                         Description                         |
+| :----------------------: | :--------: | :---------------------------------------------------------------: | :-----------------------: | :---------------------------------------------------------: |
+|           data           |    true    |                                T[]                                |             -             |                Array of items for the table                 |
+|           keys           |   false    |                {[K in keyof Partial<T>]: string;}                 | {[key as keyof T]:string} |   For each key you want in the table, witch title to show   |
+|          sorts           |   false    | {[K in keyof Partial<T>]: (first: T[K], second: T[K]) => number;} |            {}             | For each key you want sort by him, function for sorting him |
+|  staticPaginatorOptions  |   false    |                          Specified later                          |         undefined         |                       Specified later                       |
+| relativePaginatorOptions |   false    |                          Specified later                          |         undefined         |                       Specified later                       |
+
+staticPaginatorOptions:
+
+Add this for paginator between existing data
+
+|        Prop         | Is require |                Type                 | Default value |                                           Description                                            |
+| :-----------------: | :--------: | :---------------------------------: | :-----------: | :----------------------------------------------------------------------------------------------: |
+|    itemsPerPage     |    true    |               number                |       -       |                                 How much items you want in page                                  |
+|        page         |   false    |         number or undefined         |       -       | This variable intended to control the page from outside, if you d'ont need that you can skep him |
+|  handlePageChange   |   false    | (page: number) => void or undefined |       -       | This variable intended to control the page from outside, if you d'ont need that you can skep him |
+|      ClassName      |   false    |               string                |      ""       |                                   ClassName for the pagination                                   |
+| pageButtonClassName |   false    |               string                |      ""       |                             ClassName for the pagination page button                             |
+
+relativePaginatorOptions:
+
+Add this for paginator between no existing data
+
+|        Prop         | Is require |                Type                 | Default value |                                           Description                                            |
+| :-----------------: | :--------: | :---------------------------------: | :-----------: | :----------------------------------------------------------------------------------------------: |
+|        pages        |    true    |               number                |       -       |                                 How much pages you need to have                                  |
+|        page         |   false    |         number or undefined         |       -       | This variable intended to control the page from outside, if you d'ont need that you can skep him |
+|  handlePageChange   |   false    | (page: number) => void or undefined |       -       | This variable intended to control the page from outside, if you d'ont need that you can skep him |
+|      ClassName      |   false    |               string                |      ""       |                                   ClassName for the pagination                                   |
+| pageButtonClassName |   false    |               string                |      ""       |                             ClassName for the pagination page button                             |
+
+## Functions
+
+- [callFnsInSequence](#callfnsinsequence)
+
+### callFnsInSequence
+
+function that get function and run hem in sequence with the his args
