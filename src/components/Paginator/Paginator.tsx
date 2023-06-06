@@ -4,11 +4,11 @@ import PageButton from "./components/PageButton";
 import { Spacer } from "./components/Spacer";
 import { Wrapper } from "./components/Wrapper";
 type PrivateProps = {
-  className?: string;
-  pageButtonClassName?: string;
   pages: number;
   page: number;
   handlePageChange: (page: number) => void;
+  className?: string;
+  pageButtonClassName?: string;
 };
 
 function Paginator({

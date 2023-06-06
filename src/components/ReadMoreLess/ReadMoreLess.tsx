@@ -5,49 +5,38 @@ import classes from "./read-more-less.module.scss";
 import { findCharIndexesBetweenIndexes } from "@/lib/findCharBetweenIndexes";
 import { callFnsInSequence } from "@/lib/callFnsInSequence";
 
-type ReadMoreLessOptions = {
-  limit?: number;
-  minCharacter?: number;
-};
-
 type PrivateProps = {
   children: string;
+  max: number;
+  sideEffect?: (isShowFullText: boolean) => void;
   className?: string;
   style?: React.CSSProperties;
   highlightClassName?: string;
   highlightStyle?: React.CSSProperties;
-  options?: ReadMoreLessOptions;
-  sideEffect?: (isShowFullText: boolean) => void;
-};
-
-const initialOptions = {
-  limit: 300,
-  min: 0,
+  min?: number;
 };
 
 function ReadMoreLess({
   children,
+  max,
   className = "",
   style = {},
   highlightClassName = "",
   highlightStyle = {},
-  options = {},
+  min = 0,
   sideEffect,
 }: PrivateProps) {
-  const { limit, min } = { ...initialOptions, ...options };
   const [isShowFullText, toggleIsShowFullText] = useToggle();
   const t = useTranslation();
-  const isNeeded = children.length > limit;
+  const isNeeded = children.length > max;
   const shortText = useMemo(() => {
     const spaceIndexes =
-      min >= limit
-        ? []
-        : findCharIndexesBetweenIndexes(children, " ", min, limit);
+      min >= max ? [] : findCharIndexesBetweenIndexes(children, " ", min, max);
     return children.slice(
       0,
-      spaceIndexes.length ? spaceIndexes[spaceIndexes.length - 1] : limit
+      spaceIndexes.length ? spaceIndexes[spaceIndexes.length - 1] : max
     );
-  }, [children, limit, min]);
+  }, [children, max, min]);
 
   const handleToggleIsShowFullText = sideEffect
     ? callFnsInSequence(toggleIsShowFullText, sideEffect)

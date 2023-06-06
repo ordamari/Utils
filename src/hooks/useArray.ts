@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 type Item = { id: number | string };
 export type ArrayActions<T extends Item> = {
   set: React.Dispatch<React.SetStateAction<T[]>>;
   clear: () => void;
   add: (item: T) => void;
+  addMultiple: (items: T[]) => void;
   removeById: (id: number | string) => void;
   getById: (id: number | string) => T | undefined;
   replaceById: (id: number | string, newItem: T) => void;
@@ -22,6 +23,11 @@ function useArray<T extends Item>(initialArray: T[] = []) {
   const add = (item: T) => {
     setArray((a) => [...a, item]);
   };
+
+  const addMultiple = (items: T[]) => {
+    setArray((a) => [...a, ...items]);
+  };
+
   const removeById = (id: number | string) => {
     setArray((a) => a.filter((item) => item.id !== id));
   };
@@ -36,7 +42,7 @@ function useArray<T extends Item>(initialArray: T[] = []) {
 
   const updateById = (id: number | string, props: Partial<T>) => {
     setArray((a) =>
-      a.map((item) => (item.id === id ? { ...item, ...props } : item)),
+      a.map((item) => (item.id === id ? { ...item, ...props } : item))
     );
   };
 
@@ -66,6 +72,7 @@ function useArray<T extends Item>(initialArray: T[] = []) {
       add,
       removeById,
       getById,
+      addMultiple,
       replaceById,
       updateById,
       getSortedByDates,
