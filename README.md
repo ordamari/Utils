@@ -2,13 +2,13 @@
 
 Project that contain reusable:
 
-- Hooks
-- Components
+- [Hooks](#hooks)
+- [Components](#components)
 - Functions
 
 ## Hooks
 
-- useArray- [useArray](#usearray)
+- [useArray](#usearray)
 - useToggle
 - useTranslation
 
