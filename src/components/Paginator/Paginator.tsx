@@ -3,7 +3,7 @@ import classes from "./paginator.module.scss";
 import PageButton from "./components/PageButton";
 import { Spacer } from "./components/Spacer";
 import { Wrapper } from "./components/Wrapper";
-type PrivateProps = {
+export type PaginatorProps = {
   pages: number;
   page: number;
   handlePageChange: (page: number) => void;
@@ -17,7 +17,7 @@ function Paginator({
   handlePageChange,
   className = "",
   pageButtonClassName = "",
-}: PrivateProps) {
+}: PaginatorProps) {
   if (pages <= 1) return null;
   if (pages <= 7)
     return (

@@ -4,8 +4,8 @@ import { SelectedSort } from "../types/selected-sort.type";
 import { Sorts } from "../types/sorts.type";
 import { TableKeys } from "../types/table-keys.type";
 import classes from "../table.module.scss";
-import Icon from "@/components/Icon/Icon";
-import { Icons } from "@/enums/icons.enum";
+import Icon from "../../Icon/Icon";
+import { Icons } from "../../../enums/icons.enum";
 
 type PrivateProps<T extends Item> = {
   keys: TableKeys<T>;

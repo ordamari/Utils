@@ -2,7 +2,7 @@ import { useToggle } from "@/hooks/useToggle";
 import { useCallback, useRef, useState } from "react";
 import Loader from "../Loader/Loader";
 
-type PrivateProps = {
+export type InfinityScrollProps = {
   children: React.ReactNode;
   isHasMore: boolean;
   load: () => void | Promise<void>;
@@ -16,7 +16,7 @@ function InfinityScroll({
   load,
   loader = <Loader />,
   errorComponent = <span>error click here to try again</span>,
-}: PrivateProps) {
+}: InfinityScrollProps) {
   const [isLoad, toggleIsLoad] = useToggle();
   const [error, setError] = useState<Error | null>(null);
   const observer = useRef<IntersectionObserver>();

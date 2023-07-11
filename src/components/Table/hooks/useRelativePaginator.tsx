@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { RelativePaginatorOptions } from "../types/relative-paginator-options.type";
-import { callFnsInSequence } from "@/lib/callFnsInSequence";
+import { callFnsInSequence } from "../../../lib/callFnsInSequence";
 
 function useRelativePaginator(
   relativePaginatorOptions: RelativePaginatorOptions | undefined

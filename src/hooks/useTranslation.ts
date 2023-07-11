@@ -1,5 +1,5 @@
-import { Language } from "@/enums/language.enum";
-import { translations } from "@/languages";
+import { Language } from "../enums/language.enum";
+import { translations } from "../languages/index";
 
 function useTranslation() {
   const language = Language.English;

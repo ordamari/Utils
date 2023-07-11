@@ -13,7 +13,7 @@ import { Sorts } from "./types/sorts.type";
 import { SelectedSort } from "./types/selected-sort.type";
 import { SortDirection } from "./enums/sort-direction.enum";
 
-type PrivateProps<T extends Item> = {
+export type TableProps<T extends Item> = {
   className?: string;
   data: T[];
   keys?: TableKeys<T>;
@@ -29,7 +29,7 @@ function Table<T extends Item>({
   staticPaginatorOptions,
   relativePaginatorOptions,
   sorts = {} as Sorts<T>,
-}: PrivateProps<T>) {
+}: TableProps<T>) {
   const renderedKeys = useMemo(() => {
     return keys
       ? keys

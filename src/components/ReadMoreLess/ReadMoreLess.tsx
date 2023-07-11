@@ -2,10 +2,10 @@ import { useMemo } from "react";
 import { useToggle } from "../../hooks/useToggle";
 import useTranslation from "../../hooks/useTranslation";
 import classes from "./read-more-less.module.scss";
-import { findCharIndexesBetweenIndexes } from "@/lib/findCharBetweenIndexes";
-import { callFnsInSequence } from "@/lib/callFnsInSequence";
+import { findCharIndexesBetweenIndexes } from "../../lib/findCharBetweenIndexes";
+import { callFnsInSequence } from "../../lib/callFnsInSequence";
 
-type PrivateProps = {
+export type ReadMoreLessProps = {
   children: string;
   max: number;
   sideEffect?: (isShowFullText: boolean) => void;
@@ -25,7 +25,7 @@ function ReadMoreLess({
   highlightStyle = {},
   min = 0,
   sideEffect,
-}: PrivateProps) {
+}: ReadMoreLessProps) {
   const [isShowFullText, toggleIsShowFullText] = useToggle();
   const t = useTranslation();
   const isNeeded = children.length > max;
